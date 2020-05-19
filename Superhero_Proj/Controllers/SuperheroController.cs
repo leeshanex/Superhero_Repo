@@ -47,7 +47,7 @@ namespace Superhero_Proj.Controllers
                 // TODO: Add insert logic here
                 context.Superheroes.Add(superhero);
                 context.SaveChanges();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -58,7 +58,8 @@ namespace Superhero_Proj.Controllers
         // GET: Superhero/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var heroId = context.Superheroes.Where(s => s.ID == id).FirstOrDefault();
+            return View(heroId);
         }
 
         // POST: Superhero/Edit/5
