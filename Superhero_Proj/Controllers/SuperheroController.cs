@@ -26,14 +26,15 @@ namespace Superhero_Proj.Controllers
         // GET: Superhero/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var publicID = context.Superheroes;
+            return View(publicID);
         }
 
         // GET: Superhero/Create
         public ActionResult Create()
         {
             Superhero superhero = new Superhero();
-            return View();
+            return View(superhero);
         }
 
         // POST: Superhero/Create
