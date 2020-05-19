@@ -4,11 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Superhero_Proj.Data;
+using Superhero_Proj.Models;
 
 namespace Superhero_Proj.Controllers
 {
     public class SuperheroController : Controller
     {
+        ApplicationDbContext context;
+        public SuperheroController()
+        {
+
+        }
         // GET: Superhero
         public ActionResult Index()
         {
@@ -24,6 +31,7 @@ namespace Superhero_Proj.Controllers
         // GET: Superhero/Create
         public ActionResult Create()
         {
+            Superhero superhero = new Superhero;
             return View();
         }
 
