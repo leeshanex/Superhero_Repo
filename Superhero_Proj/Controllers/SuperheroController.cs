@@ -14,7 +14,7 @@ namespace Superhero_Proj.Controllers
         ApplicationDbContext context;
         public SuperheroController()
         {
-
+            context = new ApplicationDbContext();
         }
         // GET: Superhero
         public ActionResult Index()
@@ -31,7 +31,7 @@ namespace Superhero_Proj.Controllers
         // GET: Superhero/Create
         public ActionResult Create()
         {
-            Superhero superhero = new Superhero;
+            Superhero superhero = new Superhero();
             return View();
         }
 
