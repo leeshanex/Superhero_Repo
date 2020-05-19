@@ -12,14 +12,15 @@ namespace Superhero_Proj.Controllers
     public class SuperheroController : Controller
     {
         ApplicationDbContext context;
-        public SuperheroController()
+        public SuperheroController(ApplicationDbContext applicationDbContext) 
         {
-            context = new ApplicationDbContext();
+            context = applicationDbContext;
         }
         // GET: Superhero
         public ActionResult Index()
         {
-            return View();
+            var heroes = context.Superheroes;
+            return View(heroes);
         }
 
         // GET: Superhero/Details/5
@@ -38,12 +39,13 @@ namespace Superhero_Proj.Controllers
         // POST: Superhero/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Superhero superhero)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                context.Superheroes.Add(superhero);
+                context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
