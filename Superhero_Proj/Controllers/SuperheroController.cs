@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Superhero_Proj.Data;
@@ -26,22 +27,21 @@ namespace Superhero_Proj.Controllers
         // GET: Superhero/Details/5
         public ActionResult Details(int id)
         {
-            var publicID = context.Superheroes.Where(s => s.Id == id)
+            var publicID = context.Superheroes.Where(s => s.Id == id).FirstOrDefault();
             return View(publicID);
         }
 
         // GET: Superhero/Create
         public ActionResult Create()
         {
-            Superhero superhero = new Superhero();
-
-            return View(superhero);
+            var heroCreation = context.Superheroes.Where(s => s.Id >= 0).FirstOrDefault();
+            return View(heroCreation);
         }
 
         // POST: Superhero/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Superhero superhero)
+        public ActionResult Create([Bind(include: "Id,SuperheroName,AlterEgoName,PrimaryAbility,SecondaryAbility,Catchphrase")] Superhero superhero)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace Superhero_Proj.Controllers
         // GET: Superhero/Edit/5
         public ActionResult Edit(int id)
         {
-            var heroId = context.Superheroes.Where(s => s.ID == id).FirstOrDefault();
+            var heroId = context.Superheroes.Where(s => s.Id == id).FirstOrDefault();
             //foreach(Superhero superhero in context.Superheroes)
             //{
             //    if(superhero.ID == id)
@@ -73,7 +73,7 @@ namespace Superhero_Proj.Controllers
         // POST: Superhero/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Superhero superhero)
         {
             try
             {
@@ -90,19 +90,20 @@ namespace Superhero_Proj.Controllers
         // GET: Superhero/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var heroId = context.Superheroes.Where(s => s.Id == id).FirstOrDefault();
+            return View(heroId);
         }
 
         // POST: Superhero/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Superhero superhero)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
+                context.Remove(superhero);
+                context.SaveChanges();
+                return RedirectToAction("Index");
             }
             catch
             {
