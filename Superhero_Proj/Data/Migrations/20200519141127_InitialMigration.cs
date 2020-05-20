@@ -7,27 +7,27 @@ namespace Superhero_Proj.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "alterEgoName",
+                name: "AlterEgoName",
                 table: "Superheroes",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "catchphrase",
+                name: "Catchphrase",
                 table: "Superheroes",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "primaryAbility",
+                name: "PrimaryAbility",
                 table: "Superheroes",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "secondaryAbility",
+                name: "SecondaryAbility",
                 table: "Superheroes",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "superheroName",
+                name: "SuperheroName",
                 table: "Superheroes",
                 nullable: true);
         }
@@ -35,23 +35,23 @@ namespace Superhero_Proj.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "alterEgoName",
+                name: "AlterEgoName",
                 table: "Superheroes");
 
             migrationBuilder.DropColumn(
-                name: "catchphrase",
+                name: "Catchphrase",
                 table: "Superheroes");
 
             migrationBuilder.DropColumn(
-                name: "primaryAbility",
+                name: "PrimaryAbility",
                 table: "Superheroes");
 
             migrationBuilder.DropColumn(
-                name: "secondaryAbility",
+                name: "SecondaryAbility",
                 table: "Superheroes");
 
             migrationBuilder.DropColumn(
-                name: "superheroName",
+                name: "SuperheroName",
                 table: "Superheroes");
         }
     }

@@ -26,7 +26,7 @@ namespace Superhero_Proj.Controllers
         // GET: Superhero/Details/5
         public ActionResult Details(int id)
         {
-            var publicID = context.Superheroes;
+            var publicID = context.Superheroes.Where(s => s.Id == id)
             return View(publicID);
         }
 
@@ -34,6 +34,7 @@ namespace Superhero_Proj.Controllers
         public ActionResult Create()
         {
             Superhero superhero = new Superhero();
+
             return View(superhero);
         }
 
@@ -59,6 +60,13 @@ namespace Superhero_Proj.Controllers
         public ActionResult Edit(int id)
         {
             var heroId = context.Superheroes.Where(s => s.ID == id).FirstOrDefault();
+            //foreach(Superhero superhero in context.Superheroes)
+            //{
+            //    if(superhero.ID == id)
+            //    {
+            //        return View(superhero);
+            //    }
+            //}
             return View(heroId);
         }
 

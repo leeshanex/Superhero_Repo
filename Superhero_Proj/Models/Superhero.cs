@@ -9,11 +9,11 @@ namespace Superhero_Proj.Models
     public class Superhero 
     {
         [Key]
-        public int ID { get; set; }
-        public string superheroName { get; set; }
-        public string alterEgoName{ get; set; }
-        public string primaryAbility{ get; set; }
-        public string secondaryAbility { get; set; }
-        public string catchphrase { get; set; }
+        public int Id { get; set; }
+        public string SuperheroName { get; set; }
+        public string AlterEgoName{ get; set; }
+        public string PrimaryAbility{ get; set; }
+        public string SecondaryAbility { get; set; }
+        public string Catchphrase { get; set; }
     }
 }
